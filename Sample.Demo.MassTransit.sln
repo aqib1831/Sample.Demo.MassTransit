@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTrasit.Api", "WebApplication1\MassTrasit.Api.csproj", "{86251A4C-EC7A-4DF9-8FAB-BE748EC1F8DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTrasit.Api", "MassTransit.Api\MassTrasit.Api.csproj", "{86251A4C-EC7A-4DF9-8FAB-BE748EC1F8DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Contracts", "MassTransit.Contracts\MassTransit.Contracts.csproj", "{9F132FE1-68C9-425A-B2C8-9AF6B2A727ED}"
 EndProject
@@ -41,3 +41,4 @@ Global
 		SolutionGuid = {8A9FAB54-CCBE-4560-A5CE-43E23801DD0D}
 	EndGlobalSection
 EndGlobal
+
