@@ -74,6 +74,15 @@ namespace MassTransit.Services.StateMachine
                     .TransitionTo(Completed));
 
             DuringAny(
+                When(OrderStatusRequested)
+                    .RespondAsync(x => x.Init<OrderStatus>(new
+                    {
+                        OrderId = x.Instance.CorrelationId,
+                        State = x.Instance.CurrentState
+                    }))
+            );
+
+            DuringAny(
                 When(OrderSubmitted)
                     .Then(context =>
                     {

@@ -43,5 +43,43 @@ namespace MassTransit.Test
                 await harness.Stop();
             }
         }
+
+        [Fact]
+        public async Task Should_respond_to_status_checks()
+        {
+            var orderStateMachine = new OrderStateMachine();
+
+            var harness = new InMemoryTestHarness();
+            var saga = harness.StateMachineSaga<OrderState, OrderStateMachine>(orderStateMachine);
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                await harness.Bus.Publish<OrderSubmittedEvent>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "12345"
+                });
+
+                Assert.True(saga.Created.Select(x => x.CorrelationId == orderId).Any());
+
+                var instanceId = await saga.Exists(orderId, x => x.Submitted);
+
+                Assert.NotNull(instanceId);
+
+                var requestClient = await harness.ConnectRequestClient<CheckOrder>();
+
+                var response = await requestClient.GetResponse<OrderStatus>(new { OrderId = orderId });
+
+                Assert.Equal(response.Message.State, orderStateMachine.Submitted.Name);
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
     }
 }
