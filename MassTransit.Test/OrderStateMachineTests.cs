@@ -81,5 +81,46 @@ namespace MassTransit.Test
                 await harness.Stop();
             }
         }
+
+        [Fact]
+        public async Task Should_accept_when_order_is_accepted()
+        {
+            var orderStateMachine = new OrderStateMachine();
+
+            var harness = new InMemoryTestHarness();
+            var saga = harness.StateMachineSaga<OrderState, OrderStateMachine>(orderStateMachine);
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                await harness.Bus.Publish<OrderSubmittedEvent>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "12345"
+                });
+
+                Assert.True(saga.Created.Select(x => x.CorrelationId == orderId).Any());
+
+                var instanceId = await saga.Exists(orderId, x => x.Submitted);
+                Assert.NotNull(instanceId);
+
+                await harness.Bus.Publish<OrderAccepted>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                });
+
+                instanceId = await saga.Exists(orderId, x => x.Accepted);
+                Assert.NotNull(instanceId);
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
+
     }
 }
