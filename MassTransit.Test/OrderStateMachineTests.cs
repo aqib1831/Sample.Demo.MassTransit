@@ -3,6 +3,7 @@ using MassTransit.Testing;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Automatonymous.Graphing;
 using MassTransit.Contracts;
 using Xunit;
 
