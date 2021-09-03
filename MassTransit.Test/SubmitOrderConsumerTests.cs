@@ -43,5 +43,37 @@ namespace MassTransit.Test
                 await harness.Stop();
             }
         }
+
+        [Fact]
+        public async Task Should_respond_with_rejected_if_test()
+        {
+            var harness = new InMemoryTestHarness();
+            var consumer = harness.Consumer<SubmitOrderConsumer>();
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                var requestClient = await harness.ConnectRequestClient<SubmitOrderPayload>();
+
+                var response = await requestClient.GetResponse<OrderSubmissionRejected>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "TEST123"
+                });
+
+                Assert.Equal(response.Message.OrderId, orderId);
+
+                Assert.True(consumer.Consumed.Select<SubmitOrderPayload>().Any());
+
+                Assert.True(harness.Sent.Select<OrderSubmissionRejected>().Any());
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
     }
 }
