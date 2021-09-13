@@ -75,5 +75,34 @@ namespace MassTransit.Test
                 await harness.Stop();
             }
         }
+
+        [Fact]
+        public async Task Should_consume_submit_order_commands()
+        {
+            var harness = new InMemoryTestHarness { TestTimeout = TimeSpan.FromSeconds(5) };
+            var consumer = harness.Consumer<SubmitOrderConsumer>();
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                await harness.InputQueueSendEndpoint.Send<SubmitOrderPayload>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "12345"
+                });
+
+                Assert.True(consumer.Consumed.Select<SubmitOrderPayload>().Any());
+
+                Assert.False(harness.Sent.Select<OrderSubmissionAccepted>().Any());
+                Assert.False(harness.Sent.Select<OrderSubmissionRejected>().Any());
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
     }
 }
