@@ -104,5 +104,34 @@ namespace MassTransit.Test
                 await harness.Stop();
             }
         }
+
+        [Fact]
+        public async Task Should_not_publish_order_submitted_event_when_rejected()
+        {
+            var harness = new InMemoryTestHarness { TestTimeout = TimeSpan.FromSeconds(5) };
+            var consumer = harness.Consumer<SubmitOrderConsumer>();
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                await harness.InputQueueSendEndpoint.Send<SubmitOrderPayload>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "TEST123"
+                });
+
+                Assert.True(consumer.Consumed.Select<SubmitOrderPayload>().Any());
+
+                Assert.False(harness.Published.Select<OrderSubmittedEvent>().Any());
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
+
     }
 }
