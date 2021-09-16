@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>WebApplication1</name>
+        <name>MassTrasit.Api</name>
     </assembly>
     <members>
         <member name="T:WebApplication1.Controllers.OrderController">
