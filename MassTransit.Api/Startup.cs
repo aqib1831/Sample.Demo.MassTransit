@@ -117,8 +117,6 @@ namespace WebApplication1
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             app.UseAuthorization();
             app.UseSwagger();
 
@@ -130,10 +128,10 @@ namespace WebApplication1
             });
 
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Project\23-08-2021\Sample.Demo.MassTransit\WebApplication1\WebApplication1.xml</DocumentationFile>
+    <DocumentationFile>App_Data\MassTrasit.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
