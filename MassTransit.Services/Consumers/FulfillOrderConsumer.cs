@@ -1,7 +1,5 @@
 ﻿using MassTransit.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using MassTransit.Courier;
 using MassTransit.Courier.Contracts;

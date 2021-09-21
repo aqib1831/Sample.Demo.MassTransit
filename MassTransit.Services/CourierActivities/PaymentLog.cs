@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MassTransit.Services.CourierActivities
+﻿namespace MassTransit.Services.CourierActivities
 {
     public interface PaymentLog
     {
