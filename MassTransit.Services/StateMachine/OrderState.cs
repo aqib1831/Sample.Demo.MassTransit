@@ -2,8 +2,7 @@
 using MassTransit.Saga;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 namespace MassTransit.Services.StateMachine
 {
     public class OrderState :
