@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using MassTransit;
 using MassTransit.Contracts;
 using MassTrasit.Api.Models;
-using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers
+namespace MassTrasit.Api.Controllers
 {
     /// <summary>
     /// 
