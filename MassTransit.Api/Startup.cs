@@ -1,42 +1,45 @@
+using System;
+using System.IO;
+using System.Reflection;
+using MassTransit;
+using MassTransit.Contracts;
+using MassTransit.Definition;
+using MassTransit.Services.Consumers;
+using MassTransit.Services.CourierActivities;
+using MassTransit.Services.StateMachine;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using MassTransit.Definition;
-using MassTransit;
-using MassTransit.ExtensionsDependencyInjectionIntegration;
-using MassTransit.Contracts;
-using MassTransit.Courier.Contracts;
-using MassTransit.Services.Consumers;
-using MassTransit.Services.CourierActivities;
-using MassTransit.Services.StateMachine;
-using MongoDB.Driver;
-using MassTransit.MongoDbIntegration.MessageData;
-using MassTransit.Services;
 
-namespace WebApplication1
+namespace MassTrasit.Api
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -52,18 +55,18 @@ namespace WebApplication1
             BootstrapMassTransit(services);
         }
 
-        private void BootstrapMassTransit(IServiceCollection _services)
+        private void BootstrapMassTransit(IServiceCollection services)
         {
-            _services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+            services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
 
-            _services.AddMassTransit(cfg =>
+            services.AddMassTransit(cfg =>
             {
                 BootstrapStateMachine(cfg);
                 cfg.UsingInMemory(ConfigureInMemoryBus);
 
             });
 
-            _services.AddMassTransitHostedService();
+            services.AddMassTransitHostedService();
 
         }
 
@@ -108,6 +111,11 @@ namespace WebApplication1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
