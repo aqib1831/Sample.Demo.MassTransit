@@ -81,8 +81,8 @@ namespace MassTrasit.Api
                 .MongoDbRepository(r =>
                 {
                     r.Connection = "mongodb://localhost:27017/";
-                    r.DatabaseName = "Demo";
-                    r.CollectionName = "OrderStates";
+                    r.DatabaseName = "DemoM";
+                    r.CollectionName = "OrderStatesM";
                 });
 
             serviceBusConfigurator.AddRequestClient<SubmitOrderPayload>();
@@ -124,7 +124,7 @@ namespace MassTrasit.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseAuthorization();
             app.UseSwagger();
 
@@ -136,10 +136,10 @@ namespace MassTrasit.Api
             });
 
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
