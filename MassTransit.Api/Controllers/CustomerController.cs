@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
 using MassTransit;
 using MassTransit.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers
+namespace MassTrasit.Api.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class CustomerController :
@@ -16,11 +16,21 @@ namespace WebApplication1.Controllers
     {
         readonly IPublishEndpoint _publishEndpoint;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="publishEndpoint"></param>
         public CustomerController(IPublishEndpoint publishEndpoint)
         {
             _publishEndpoint = publishEndpoint;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="customerNumber"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id, string customerNumber)
         {

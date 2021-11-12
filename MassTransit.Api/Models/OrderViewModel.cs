@@ -1,22 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApplication1.Models
+namespace MassTrasit.Api.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class OrderViewModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public string CustomerNumber { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Required]
         public string PaymentCardNumber { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Notes { get; set; }
     }
 }

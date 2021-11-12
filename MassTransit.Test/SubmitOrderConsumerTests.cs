@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MassTransit.Contracts;
 using MassTransit.Services.Consumers;
@@ -133,5 +131,30 @@ namespace MassTransit.Test
             }
         }
 
+        [Fact]
+        public async Task Should_publish_order_submitted_event()
+        {
+            var harness = new InMemoryTestHarness();
+            var consumer = harness.Consumer<SubmitOrderConsumer>();
+
+            await harness.Start();
+            try
+            {
+                var orderId = NewId.NextGuid();
+
+                await harness.InputQueueSendEndpoint.Send<SubmitOrderPayload>(new
+                {
+                    OrderId = orderId,
+                    InVar.Timestamp,
+                    CustomerNumber = "12345"
+                });
+
+                Assert.True(await harness.Published.Any<OrderSubmittedEvent>());
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
     }
 }

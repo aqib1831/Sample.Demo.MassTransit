@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using MassTransit;
 using MassTransit.Contracts;
-using Microsoft.AspNetCore.Routing;
-using WebApplication1.Models;
+using MassTrasit.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers
+namespace MassTrasit.Api.Controllers
 {
     /// <summary>
     /// 
@@ -120,7 +119,7 @@ namespace WebApplication1.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("OrderConfirm")]
-        public async Task<IActionResult> OrderConfirm(OrderViewModel model)
+        public async Task<IActionResult> Confirm(OrderViewModel model)
         {
             var endpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:fulfill-order"));
 

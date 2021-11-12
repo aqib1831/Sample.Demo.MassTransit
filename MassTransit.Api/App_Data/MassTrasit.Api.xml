@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MassTrasit.Api</name>
+    </assembly>
+    <members>
+        <member name="T:MassTrasit.Api.Controllers.CustomerController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.CustomerController.#ctor(MassTransit.IPublishEndpoint)">
+            <summary>
+            
+            </summary>
+            <param name="publishEndpoint"></param>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.CustomerController.Delete(System.Guid,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="customerNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MassTrasit.Api.Controllers.OrderController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.OrderController.#ctor(MassTransit.IRequestClient{MassTransit.Contracts.SubmitOrderPayload},MassTransit.IPublishEndpoint,MassTransit.IRequestClient{MassTransit.Contracts.CheckOrder},MassTransit.ISendEndpointProvider)">
+            <summary>
+            
+            </summary>
+            <param name="submitOrderRequestClient"></param>
+            <param name="publishEndpoint"></param>
+            <param name="checkOrderClient"></param>
+            <param name="sendEndpointProvider"></param>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.OrderController.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.OrderController.Post(MassTrasit.Api.Models.OrderViewModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.OrderController.Patch(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTrasit.Api.Controllers.OrderController.Confirm(MassTrasit.Api.Models.OrderViewModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MassTrasit.Api.Models.OrderViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MassTrasit.Api.Models.OrderViewModel.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MassTrasit.Api.Models.OrderViewModel.CustomerNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MassTrasit.Api.Models.OrderViewModel.PaymentCardNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MassTrasit.Api.Models.OrderViewModel.Notes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MassTrasit.Api.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MassTrasit.Api.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:MassTrasit.Api.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MassTrasit.Api.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MassTrasit.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:MassTrasit.Api.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MassTrasit.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MassTrasit.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
