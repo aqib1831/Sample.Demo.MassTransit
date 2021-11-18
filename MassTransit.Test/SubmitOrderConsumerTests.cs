@@ -135,7 +135,7 @@ namespace MassTransit.Test
         public async Task Should_publish_order_submitted_event()
         {
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer<SubmitOrderConsumer>();
+            harness.Consumer<SubmitOrderConsumer>();
 
             await harness.Start();
             try
