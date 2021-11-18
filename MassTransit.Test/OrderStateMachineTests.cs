@@ -7,7 +7,7 @@ using Xunit;
 
 namespace MassTransit.Test
 {
-    public class OrderStateMachineTests
+    public class StateMachineTests
     {
         [Fact]
         public async Task Should_create_a_state_instance()

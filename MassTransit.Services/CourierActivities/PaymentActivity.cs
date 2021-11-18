@@ -15,9 +15,6 @@ namespace MassTransit.Services.CourierActivities
             if (string.IsNullOrEmpty(cardNumber))
                 throw new ArgumentNullException(nameof(cardNumber));
 
-            //await Task.Delay(1000);
-            // await Task.Delay(_random.Next(10000));
-
             if (cardNumber.StartsWith("5999"))
             {
                 throw new InvalidOperationException("The card number was invalid");
