@@ -7,7 +7,7 @@ namespace MassTransit.Services.CourierActivities
     public class PaymentActivity :
         IActivity<PaymentArguments, PaymentLog>
     {
-        static readonly Random _random = new Random();
+        static readonly Random Random = new Random();
 
         public async Task<ExecutionResult> Execute(ExecuteContext<PaymentArguments> context)
         {
